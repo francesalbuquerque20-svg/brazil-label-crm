@@ -41,11 +41,19 @@ CREATE TABLE IF NOT EXISTS tasks(
 );
 `);
 
-const count = db.prepare("SELECT COUNT(*) c FROM users").get().c;
-if (!count) {
-  const hash = bcrypt.hashSync(process.env.ADMIN_PASSWORD || "Brazil@123", 10);
+const adminEmail = process.env.ADMIN_EMAIL || "francesalbuquerque20@gmail.com";
+const adminPassword = process.env.ADMIN_PASSWORD;
+
+const admin = db.prepare("SELECT id FROM users WHERE email = ?").get(adminEmail);
+
+if (admin) {
+  const hash = bcrypt.hashSync(adminPassword, 10);
+  db.prepare("UPDATE users SET password = ?, name = ? WHERE email = ?")
+    .run(hash, "Administrador", adminEmail);
+} else {
+  const hash = bcrypt.hashSync(adminPassword, 10);
   db.prepare("INSERT INTO users(name,email,password) VALUES(?,?,?)")
-    .run("Administrador", process.env.ADMIN_EMAIL || "admin@brazillabel.com.br", hash);
+    .run("Administrador", adminEmail, hash);
 }
 
 app.use(express.json());
