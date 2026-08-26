@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil Label - Solicitação de Orçamento</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#006b3c,#078d4b);
+    color:#17352b;
+}
+
+header{
+    background:#fff;
+    padding:18px 25px;
+    box-shadow:0 2px 12px rgba(0,0,0,.15);
+}
+
+.header{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    color:#006b3c;
+}
+
+.logo span{
+    color:#1769aa;
+}
+
+.subtitle{
+    color:#666;
+    font-size:14px;
+}
+
+.container{
+    max-width:1000px;
+    margin:35px auto;
+    padding:0 18px;
+}
+
+.card{
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.20);
+}
+
+h1{
+    margin-top:0;
+    color:#006b3c;
+}
+
+.intro{
+    color:#555;
+    line-height:1.6;
+}
+
+.section{
+    margin-top:25px;
+    padding-top:20px;
+    border-top:1px solid #ddd;
+}
+
+.section h2{
+    color:#006b3c;
+    font-size:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+    background:#fff;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+button{
+    border:0;
+    border-radius:12px;
+    padding:16px 22px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.whatsapp{
+    width:100%;
+    margin-top:25px;
+    background:#0a9f55;
+    color:#fff;
+}
+
+.whatsapp:hover{
+    background:#078d4b;
+}
+
+.back{
+    background:#eee;
+    color:#333;
+    margin-bottom:20px;
+}
+
+.info{
+    background:#eef8f2;
+    border-left:5px solid #0a9f55;
+    padding:15px;
+    border-radius:8px;
+    margin-top:20px;
+    line-height:1.5;
+}
+
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header">
+        <div>
+            <div class="logo">BRAZIL <span>LABEL</span></div>
+            <div class="subtitle">Etiquetas • Rótulos • Embalagens • Impressão</div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<button class="back" onclick="history.back()">← Voltar</button>
+
+<h1>Solicite seu orçamento</h1>
+
+<p class="intro">
+Preencha as informações abaixo. Nossa equipe receberá sua solicitação
+diretamente pelo WhatsApp e entrará em contato para preparar seu orçamento.
+</p>
+
+<div class="info">
+<strong>Importante:</strong> este formulário não calcula o preço.
+Ele serve para enviar todas as informações necessárias para que nossa equipe
+possa preparar o orçamento corretamente.
+</div>
+
+<form id="orcamentoForm">
+
+<div class="section">
+
+<h2>1. Seus dados</h2>
+
+<div class="grid">
+
+<div>
+<label>Nome *</label>
+<input id="nome" required placeholder="Seu nome">
+</div>
+
+<div>
+<label>Empresa *</label>
+<input id="empresa" required placeholder="Nome da empresa">
+</div>
+
+<div>
+<label>WhatsApp *</label>
+<input id="telefone" required placeholder="(92) 99999-9999">
+</div>
+
+<div>
+<label>Cidade</label>
+<input id="cidade" value="Manaus" placeholder="Cidade">
+</div>
+
+</div>
+</div>
+
+<div class="section">
+
+<h2>2. Produto que você precisa</h2>
+
+<div class="grid">
+
+<div class="full">
+<label>Produto *</label>
+
+<select id="produto" required>
+<option value="">Selecione o produto</option>
+<option>Etiquetas Personalizadas</option>
+<option>Etiquetas para Balança</option>
+<option>Rótulos Personalizados</option>
+<option>Caixas Personalizadas</option>
+<option>Embalagens Personalizadas</option>
+<option>Bobinas PDV</option>
+<option>Ribbons</option>
+<option>Outro</option>
+</select>
+
+</div>
+
+<div>
+<label>Quantidade *</label>
+<input id="quantidade" required placeholder="Ex.: 10.000">
+</div>
+
+<div>
+<label>Unidade</label>
+<select id="unidade">
+<option>Unidades</option>
+<option>Rolos</option>
+<option>Caixas</option>
+<option>Quilos</option>
+</select>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+
+<h2>3. Características do produto</h2>
+
+<div class="grid">
+
+<div>
+<label>Material</label>
+<select id="material">
+<option value="">Selecione</option>
+<option>BOPP Branco</option>
+<option>BOPP Perolado</option>
+<option>BOPP Transparente</option>
+<option>Poliéster Branco</option>
+<option>Couchê</option>
+<option>Papel Térmico</option>
+<option>Outro</option>
+</select>
+</div>
+
+<div>
+<label>Formato</label>
+<input id="formato" placeholder="Ex.: 100 x 50 mm">
+</div>
+
+<div>
+<label>Cores</label>
+<select id="cores">
+<option value="">Selecione</option>
+<option>1 cor</option>
+<option>2 cores</option>
+<option>3 cores</option>
+<option>4 cores</option>
+<option>4 cores + branco</option>
+<option>Outra</option>
+</select>
+</div>
+
+<div>
+<label>Acabamento</label>
+<select id="acabamento">
+<option value="">Selecione</option>
+<option>Sem acabamento</option>
+<option>Verniz</option>
+<option>Laminação</option>
+<option>Hot Stamping</option>
+<option>Corte especial</option>
+<option>Outro</option>
+</select>
+</div>
+
+<div class="full">
+<label>Descrição / observações</label>
+<textarea id="observacoes" placeholder="Conte tudo que você precisa para esse produto. Ex.: aplicação da etiqueta, tamanho, tipo de impressão, acabamento, modelo semelhante, prazo desejado etc."></textarea>
+</div>
+
+</div>
+</div>
+
+<button type="submit" class="whatsapp">
+📱 SOLICITAR ORÇAMENTO PELO WHATSAPP
+</button>
+
+</form>
+
+</div>
+</div>
+
+<script>
+
+document.getElementById("orcamentoForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const empresa = document.getElementById("empresa").value;
+    const telefone = document.getElementById("telefone").value;
+    const cidade = document.getElementById("cidade").value;
+    const produto = document.getElementById("produto").value;
+    const quantidade = document.getElementById("quantidade").value;
+    const unidade = document.getElementById("unidade").value;
+    const material = document.getElementById("material").value;
+    const formato = document.getElementById("formato").value;
+    const cores = document.getElementById("cores").value;
+    const acabamento = document.getElementById("acabamento").value;
+    const observacoes = document.getElementById("observacoes").value;
+
+    const mensagem =
+`Olá, Brazil Label! Gostaria de solicitar um orçamento.
+
+👤 DADOS DO CLIENTE
+Nome: ${nome}
+Empresa: ${empresa}
+WhatsApp: ${telefone}
+Cidade: ${cidade}
+
+📦 PRODUTO
+Produto: ${produto}
+Quantidade: ${quantidade} ${unidade}
+
+📏 CARACTERÍSTICAS
+Material: ${material || "Não informado"}
+Formato: ${formato || "Não informado"}
+Cores: ${cores || "Não informado"}
+Acabamento: ${acabamento || "Não informado"}
+
+📝 OBSERVAÇÕES
+${observacoes || "Nenhuma observação informada."}
