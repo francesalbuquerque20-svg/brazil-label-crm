@@ -1,0 +1,94 @@
+
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brazil Label — CRM de Vendas</title>
+<style>
+:root{--g:#006b3c;--g2:#0aa85a;--y:#f5c400;--b:#1769aa;--bg:#f4f7f5;--dark:#073d2c}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#17352b}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.login{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#005b35,#078d4b)}
+.loginbox{background:#fff;border-radius:22px;padding:30px;max-width:420px;width:100%;box-shadow:0 20px 60px #0003}
+.logo{font-size:25px;font-weight:800;color:var(--g);margin-bottom:5px}.muted{color:#60786e}
+input,select,textarea{width:100%;padding:12px;border:1px solid #c9d9d1;border-radius:10px;margin-top:6px}label{font-weight:bold;font-size:13px}
+form{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.full{grid-column:1/-1}
+.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:bold}.primary{background:var(--g);color:#fff}.blue{background:var(--b);color:#fff}.yellow{background:var(--y)}
+header{background:linear-gradient(135deg,#005b35,#078d4b);color:white;padding:16px 4%;position:sticky;top:0;z-index:5}
+.head{max-width:1250px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}.head small{opacity:.9}
+main{max-width:1250px;margin:auto;padding:22px 16px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.nav button{background:#fff;border:1px solid #c9d9d1;color:var(--g)}.nav button.active{background:var(--g);color:#fff}
+.tab{display:none}.tab.active{display:block}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#fff;border:1px solid #e1ece6;border-radius:16px;padding:18px;box-shadow:0 5px 18px #0000000d}.num{font-size:28px;color:var(--g);font-weight:800}.panel{background:#fff;border-radius:18px;padding:20px;margin-top:16px;box-shadow:0 5px 18px #0000000d}
+table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;padding:10px;border-bottom:1px solid #e4eee8;font-size:13px}th{background:#edf9f1}.table{overflow:auto;margin-top:15px}.badge{padding:5px 9px;border-radius:20px;background:#edf9f1;font-size:12px;font-weight:bold}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}form{grid-template-columns:1fr}.full{grid-column:auto}}
+@media(max-width:550px){.grid{grid-template-columns:1fr}.head small{display:none}}
+</style></head><body>
+<div id="login" class="login"><div class="loginbox">
+<div class="logo">BRAZIL LABEL</div><h2>CRM de Vendas</h2><p class="muted">Acesse seu sistema comercial.</p>
+<form id="loginForm"><label class="full>E-mail<input name="email" type="email" required value="admin@brazillabel.com.br"></label>
+<label class="full>Senha<input name="password" type="password" required></label>
+<div class="full"><button class="btn primary" style="width:100%">Entrar</button></div></form>
+<p id="loginErr" style="color:#b00020"></p></div></div>
+
+<div id="app" class="hidden">
+<header><div class="head"><div><strong>🏷️ BRAZIL LABEL</strong><br><small>CRM de Vendas</small></div>
+<div><span id="userName"></span> <button class="btn yellow" onclick="logout()">Sair</button></div></div></header>
+<main>
+<div class="nav">
+<button class="btn active" onclick="tab('dashboard',this)">📊 Dashboard</button>
+<button class="btn" onclick="tab('clients',this)">👥 Clientes</button>
+<button class="btn" onclick="tab('deals',this)">💼 Oportunidades</button>
+<button class="btn" onclick="tab('quotes',this)">📝 Orçamentos</button>
+<button class="btn" onclick="tab('tasks',this)">✅ Tarefas</button>
+</div>
+
+<section id="dashboard" class="tab active"><div class="grid">
+<div class="card"><div class="muted">Clientes</div><div class="num" id="dClients">0</div></div>
+<div class="card"><div class="muted">Oportunidades</div><div class="num" id="dDeals">0</div></div>
+<div class="card"><div class="muted">Orçamentos</div><div class="num" id="dQuotes">0</div></div>
+<div class="card"><div class="muted">Em negociação</div><div class="num" id="dValue">R$ 0</div></div></div>
+<div class="panel"><h2>Funil de vendas</h2><div id="funnel"></div></div></section>
+
+<section id="clients" class="tab"><div class="panel"><h2>Novo cliente</h2><form id="clientForm">
+<label>Nome*<input name="name" required></label><label>Empresa<input name="company"></label><label>WhatsApp<input name="phone"></label>
+<label>E-mail<input name="email"></label><label>Cidade<input name="city"></label><label>Segmento<input name="segment"></label>
+<label class="full>Observações<textarea name="notes"></textarea></label><div class="full"><button class="btn primary">Salvar cliente</button></div></form></div>
+<div class="panel"><h2>Clientes cadastrados</h2><div class="table"><table><thead><tr><th>Nome</th><th>Empresa</th><th>WhatsApp</th><th>E-mail</th><th>Cidade</th></tr></thead><tbody id="clients"></tbody></table></div></div></section>
+
+<section id="deals" class="tab"><div class="panel"><h2>Nova oportunidade</h2><form id="dealForm">
+<label>Cliente<select name="client_id" id="dealClient"></select></label><label>Produto<select name="product"><option>Etiquetas Personalizadas</option><option>Etiquetas para Balança</option><option>Rótulos Personalizados</option><option>Caixas Personalizadas</option><option>Embalagens Personalizadas</option><option>Bobinas para PDV</option><option>Ribbons</option></select></label>
+<label>Valor<input name="value" type="number" step=".01"></label><label>Etapa<select name="stage"><option>Prospecção</option><option>Contato</option><option>Orçamento</option><option>Negociação</option><option>Fechado</option></select></label>
+<label>Previsão<input name="forecast" type="date"></label><label>Próxima ação<input name="next_action"></label><label class="full>Observações<textarea name="notes"></textarea></label>
+<div class="full"><button class="btn primary">Salvar oportunidade</button></div></form></div>
+<div class="panel"><h2>Oportunidades</h2><div class="table"><table><thead><tr><th>Cliente</th><th>Produto</th><th>Valor</th><th>Etapa</th><th>Próxima ação</th></tr></thead><tbody id="deals"></tbody></table></div></div></section>
+
+<section id="quotes" class="tab"><div class="panel"><h2>Orçamentos recebidos</h2><div class="table"><table><thead><tr><th>Data</th><th>Cliente</th><th>Empresa</th><th>Produto</th><th>Qtd.</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="quotes"></tbody></table></div></div></section>
+
+<section id="tasks" class="tab"><div class="panel"><h2>Nova tarefa</h2><form id="taskForm">
+<label class="full>Tarefa*<input name="task" required></label><label>Cliente<select name="client_id" id="taskClient"></select></label>
+<label>Prazo<input name="due_date" type="date"></label><label>Prioridade<select name="priority"><option>Alta</option><option>Média</option><option>Baixa</option></select></label>
+<div class="full"><button class="btn primary">Adicionar tarefa</button></div></form></div>
+<div class="panel"><h2>Tarefas</h2><div class="table"><table><thead><tr><th>Tarefa</th><th>Cliente</th><th>Prazo</th><th>Prioridade</th><th>Status</th><th></th></tr></thead><tbody id="tasks"></tbody></table></div></div></section>
+</main></div>
+<script>
+const $=s=>document.querySelector(s);
+async function api(url,opt={}){const r=await fetch(url,{headers:{'Content-Type':'application/json'},...opt});if(!r.ok)throw new Error((await r.json()).error||'Erro');return r.json()}
+function tab(id,b){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));$('#'+id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadAll()}
+$('#loginForm').onsubmit=async e=>{e.preventDefault();try{const d=Object.fromEntries(new FormData(e.target));const u=await api('/api/login',{method:'POST',body:JSON.stringify(d)});show(u)}catch(x){$('#loginErr').textContent=x.message}}
+async function show(u){$('#login').classList.add('hidden');$('#app').classList.remove('hidden');$('#userName').textContent=u.name;loadAll()}
+async function logout(){await api('/api/logout',{method:'POST'});location.reload()}
+$('#clientForm').onsubmit=async e=>{e.preventDefault();await api('/api/clients',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});e.target.reset();loadAll()}
+$('#dealForm').onsubmit=async e=>{e.preventDefault();await api('/api/deals',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});e.target.reset();loadAll()}
+$('#taskForm').onsubmit=async e=>{e.preventDefault();await api('/api/tasks',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});e.target.reset();loadAll()}
+async function loadAll(){try{
+ const [d,c,de,q,t]=await Promise.all([api('/api/dashboard'),api('/api/clients'),api('/api/deals'),api('/api/quotes'),api('/api/tasks')]);
+ $('#dClients').textContent=d.clients;$('#dDeals').textContent=d.deals;$('#dQuotes').textContent=d.quotes;$('#dValue').textContent=Number(d.value).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+ const opts='<option value="">Selecione</option>'+c.map(x=>`<option value="${x.id}">${esc(x.name)}${x.company?' — '+esc(x.company):''}</option>`).join('');$('#dealClient').innerHTML=opts;$('#taskClient').innerHTML=opts;
+ $('#clients').innerHTML=c.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.company||'-')}</td><td>${esc(x.phone||'-')}</td><td>${esc(x.email||'-')}</td><td>${esc(x.city||'-')}</td></tr>`).join('')||empty(5);
+ $('#deals').innerHTML=de.map(x=>`<tr><td>${esc(x.client_name||'-')}</td><td>${esc(x.product)}</td><td>${Number(x.value||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</td><td><span class="badge">${esc(x.stage)}</span></td><td>${esc(x.next_action||'-')}</td></tr>`).join('')||empty(5);
+ $('#quotes').innerHTML=q.map(x=>`<tr><td>${esc(x.created_at)}</td><td>${esc(x.name)}</td><td>${esc(x.company||'-')}</td><td>${esc(x.product)}</td><td>${esc(x.quantity||'-')}</td><td>${esc(x.deadline||'-')}</td><td><span class="badge">${esc(x.status)}</span></td></tr>`).join('')||empty(7);
+ $('#tasks').innerHTML=t.map(x=>`<tr><td>${esc(x.task)}</td><td>${esc(x.client_name||'-')}</td><td>${esc(x.due_date||'-')}</td><td>${esc(x.priority)}</td><td><span class="badge">${esc(x.status)}</span></td><td><button class="btn blue" onclick="done(${x.id})">Concluir</button></td></tr>`).join('')||empty(6);
+ const stages=['Prospecção','Contato','Orçamento','Negociação','Fechado'];$('#funnel').innerHTML='<div class="grid">'+stages.map(s=>`<div class="card"><b>${s}</b><h2>${de.filter(x=>x.stage===s).length}</h2></div>`).join('')+'</div>';
+ }catch(e){console.error(e)}}
+async function done(id){await api('/api/tasks/'+id,{method:'PATCH',body:JSON.stringify({status:'Concluída'})});loadAll()}
+function empty(n){return `<tr><td colspan="${n}" class="muted">Nenhum registro.</td></tr>`}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+(async()=>{const u=await api('/api/me');if(u)show(u)})()
+</script></body></html>
