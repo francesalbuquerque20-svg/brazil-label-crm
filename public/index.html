@@ -33,7 +33,7 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 <main>
 <div class="nav">
 <button class="btn active" onclick="tab('dashboard',this)">📊 Dashboard</button>
-<button class="btn" onclick="tab('clients',this)">👥 Clientes</button>
+<button class="btn" onclick="tab('clientsTab',this)">👥 Clientes</button>
 <button class="btn" onclick="tab('deals',this)">💼 Oportunidades</button>
 <button class="btn" onclick="tab('quotes',this)">📝 Orçamentos</button>
 <button class="btn" onclick="tab('tasks',this)">✅ Tarefas</button>
@@ -46,11 +46,11 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 <div class="card"><div class="muted">Em negociação</div><div class="num" id="dValue">R$ 0</div></div></div>
 <div class="panel"><h2>Funil de vendas</h2><div id="funnel"></div></div></section>
 
-<section id="clients" class="tab"><div class="panel"><h2>Novo cliente</h2><form id="clientForm">
+<section id="clientsTab" class="tab"><div class="panel"><h2>Novo cliente</h2><form id="clientForm">
 <label>Nome*<input name="name" required></label><label>Empresa<input name="company"></label><label>WhatsApp<input name="phone"></label>
 <label>E-mail<input name="email"></label><label>Cidade<input name="city"></label><label>Segmento<input name="segment"></label>
 <label class="full">Observações<textarea name="notes"></textarea></label><div class="full"><button class="btn primary">Salvar cliente</button></div></form></div>
-<div class="panel"><h2>Clientes cadastrados</h2><div class="table"><table><thead><tr><th>Nome</th><th>Empresa</th><th>WhatsApp</th><th>E-mail</th><th>Cidade</th></tr></thead><tbody id="clients"></tbody></table></div></div></section>
+<div class="panel"><h2>Clientes cadastrados</h2><div class="table"><table><thead><tr><th>Nome</th><th>Empresa</th><th>WhatsApp</th><th>E-mail</th><th>Cidade</th></tr></thead><tbody tab('clients',this)
 
 <section id="deals" class="tab"><div class="panel"><h2>Nova oportunidade</h2><form id="dealForm">
 <label>Cliente<select name="client_id" id="dealClient"></select></label><label>Produto<select name="product"><option>Etiquetas Personalizadas</option><option>Etiquetas para Balança</option><option>Rótulos Personalizados</option><option>Caixas Personalizadas</option><option>Embalagens Personalizadas</option><option>Bobinas para PDV</option><option>Ribbons</option></select></label>
