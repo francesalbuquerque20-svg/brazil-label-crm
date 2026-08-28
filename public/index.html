@@ -22,8 +22,8 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 </style></head><body>
 <div id="login" class="login"><div class="loginbox">
 <div class="logo">BRAZIL LABEL</div><h2>CRM de Vendas</h2><p class="muted">Acesse seu sistema comercial.</p>
-<form id="loginForm"><label class="full>E-mail<input name="email" type="email" required value="admin@brazillabel.com.br"></label>
-<label class="full>Senha<input name="password" type="password" required></label>
+<form id="loginForm"><label class="full">E-mail<input name="email" class="full"> required value="admin@brazillabel.com.br"></label>
+<label class="full">Senha<input name="password" type="password" required></label>
 <div class="full"><button class="btn primary" style="width:100%">Entrar</button></div></form>
 <p id="loginErr" style="color:#b00020"></p></div></div>
 
@@ -49,20 +49,20 @@ table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;
 <section id="clients" class="tab"><div class="panel"><h2>Novo cliente</h2><form id="clientForm">
 <label>Nome*<input name="name" required></label><label>Empresa<input name="company"></label><label>WhatsApp<input name="phone"></label>
 <label>E-mail<input name="email"></label><label>Cidade<input name="city"></label><label>Segmento<input name="segment"></label>
-<label class="full>Observações<textarea name="notes"></textarea></label><div class="full"><button class="btn primary">Salvar cliente</button></div></form></div>
+<label class="full">Observações<textarea name="notes"></textarea></label><div class="full"><button class="btn primary">Salvar cliente</button></div></form></div>
 <div class="panel"><h2>Clientes cadastrados</h2><div class="table"><table><thead><tr><th>Nome</th><th>Empresa</th><th>WhatsApp</th><th>E-mail</th><th>Cidade</th></tr></thead><tbody id="clients"></tbody></table></div></div></section>
 
 <section id="deals" class="tab"><div class="panel"><h2>Nova oportunidade</h2><form id="dealForm">
 <label>Cliente<select name="client_id" id="dealClient"></select></label><label>Produto<select name="product"><option>Etiquetas Personalizadas</option><option>Etiquetas para Balança</option><option>Rótulos Personalizados</option><option>Caixas Personalizadas</option><option>Embalagens Personalizadas</option><option>Bobinas para PDV</option><option>Ribbons</option></select></label>
 <label>Valor<input name="value" type="number" step=".01"></label><label>Etapa<select name="stage"><option>Prospecção</option><option>Contato</option><option>Orçamento</option><option>Negociação</option><option>Fechado</option></select></label>
-<label>Previsão<input name="forecast" type="date"></label><label>Próxima ação<input name="next_action"></label><label class="full>Observações<textarea name="notes"></textarea></label>
+<label>Previsão<input name="forecast" type="date"></label><label>Próxima ação<input name="next_action"></label><label class="full">Observações<textarea name="notes"></textarea></label>
 <div class="full"><button class="btn primary">Salvar oportunidade</button></div></form></div>
 <div class="panel"><h2>Oportunidades</h2><div class="table"><table><thead><tr><th>Cliente</th><th>Produto</th><th>Valor</th><th>Etapa</th><th>Próxima ação</th></tr></thead><tbody id="deals"></tbody></table></div></div></section>
 
 <section id="quotes" class="tab"><div class="panel"><h2>Orçamentos recebidos</h2><div class="table"><table><thead><tr><th>Data</th><th>Cliente</th><th>Empresa</th><th>Produto</th><th>Qtd.</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="quotes"></tbody></table></div></div></section>
 
 <section id="tasks" class="tab"><div class="panel"><h2>Nova tarefa</h2><form id="taskForm">
-<label class="full>Tarefa*<input name="task" required></label><label>Cliente<select name="client_id" id="taskClient"></select></label>
+<label class="full">Tarefa*<input name="task" required></label><label>Cliente<select name="client_id" id="taskClient"></select></label>
 <label>Prazo<input name="due_date" type="date"></label><label>Prioridade<select name="priority"><option>Alta</option><option>Média</option><option>Baixa</option></select></label>
 <div class="full"><button class="btn primary">Adicionar tarefa</button></div></form></div>
 <div class="panel"><h2>Tarefas</h2><div class="table"><table><thead><tr><th>Tarefa</th><th>Cliente</th><th>Prazo</th><th>Prioridade</th><th>Status</th><th></th></tr></thead><tbody id="tasks"></tbody></table></div></div></section>
