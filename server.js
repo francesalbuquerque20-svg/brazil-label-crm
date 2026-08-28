@@ -6,6 +6,7 @@ const session = require("express-session");
 const bcrypt = require("bcryptjs");
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 3000;
 const db = new Database(process.env.DB_FILE || "brazillabel.db");
 
